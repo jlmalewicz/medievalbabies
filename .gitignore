@@ -1,3 +1,6 @@
+# Config file with access tokens
+config.js
+
 # Compiled class file
 *.class
 
