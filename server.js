@@ -22,14 +22,31 @@ function random_from_array(images){
     secondary.push(random_image);
     primary.splice(random_number, 1);
     
+    let to_save = {}
+    to_save.primary = primary
+    to_save.secondary = secondary
+    
+    let to_save_string = JSON.stringify(to_save, null, 4)
+    
+    fs.writeFile(path.join(__dirname, 'images.js'), "var images =" + to_save_string + ";\n\nmodule.exports = images;", function(err) {
+    if(err) {
+        return console.log(err);
+    }
+    console.log("The file was saved!");
+}); 
   return random_image;
 }
 
 function random_text(){
-    text_array = [" hers's a bABy for yeou \n", " i foudn thkis :) \n", " thankk, foor folololwing ME \n"];
+    text_array = [" hers's a bABy for yeou \n", 
+                  " i foudn thkis :) \n", 
+                  " thankk, foor folololwing ME \n", 
+                  " wwoW! i hasve founD thid 4 u \n"];
     return text_array[Math.floor(Math.random() * text_array.length)]
+}
 
-function upload_random_image(images, optional_text){
+
+function upload_random_image(images, optional_text =''){
   console.log('Opening an image...');
   var image = random_from_array(images),
       image_path = path.join(__dirname, '/images/' + image.file ),
@@ -47,13 +64,10 @@ function upload_random_image(images, optional_text){
       console.log('Now tweeting it...');
         
         // pull out source info and shove it in the Tweet text variable
-        // optional parameters Javascript-Using the Logical OR operator (‘||’)
-      var tweet_text = optional_text + image.source || image.source;
+      var tweet_text = optional_text + image.source;
 
       T.post('statuses/update', {
-        /* You can include text with your image as well. */            
-        // status: 'New picture!', 
-        /* Or you can pick random text from an array. */            
+        /* You can include text with your image as well. */                       
         status: tweet_text,
         media_ids: new Array(data.media_id_string)
       },
@@ -69,26 +83,30 @@ function upload_random_image(images, optional_text){
       );
     }
   });
-}
+};
+
 
 // Now setting up a function that tweets a special pic at new followers
 // should pic be solely of the ones we've already posted?
 // make file with possible statuses
 // include as always, the source
 
-var stream = T.stream('user');
+var stream = T.stream('statuses/filter', { track: '@medievalbabies'});
 
 stream.on('follow', followed);
 
-function followed(eventMessage) {
-    var name = eventMessage.source.name;
-    var screenName = eventMessage.source.screen_name;
-    upload_random_image(images, '@' + screenName + random_text());
+function followed(eventMsg) {
+    var screenName = eventMsg.source.screen_name;
+    console.log('I was followed by: ' + screenName);
+    //upload_random_image(images, '@' + screenName + random_text());
+};
+
+
 
 // The following will post a random image from the \images directory
 // and post it, every 10 seconds.
 // The interval is given in [ms].
 
-setInterval(function(){
-  upload_random_image(images);
-}, 10000);
+//setInterval(function(){
+//  upload_random_image(images);
+//}, 100000000);

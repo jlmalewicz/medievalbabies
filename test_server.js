@@ -22,16 +22,9 @@ function random_from_array(test_images){
     to_save.primary = primary
     to_save.secondary = secondary
     
-    let to_save_string = JSON.stringify(to_save)
+    let to_save_string = JSON.stringify(to_save, null, 4)
     
-    //console.log(to_save_string)
-    
-    //console.log("var images = {'primary' :" + String(test_images.primary) + ", \n 'secondary' :" + String(secondary) + " }; \n module.exports = images;");
-    
-    //fs.writeFileSync(String(__dirname, 'test_images.js'), to_save);
-    //console.log(primary)
-    
-    fs.writeFile(path.join(__dirname, 'test_images.js'), "var images =" + to_save_string + "; \n module.exports = images;", function(err) {
+    fs.writeFile(path.join(__dirname, 'test_images.js'), "var images =" + to_save_string + ";\n\nmodule.exports = images;", function(err) {
     if(err) {
         return console.log(err);
     }
@@ -41,7 +34,7 @@ function random_from_array(test_images){
 }
 
 function random_text(){
-    text_array = [" hers's a bABy for yeou \n", " i foudn thkis :) \n", " thankk, foor folololwing ME \n"];
+    text_array = [" hers's a bABy for yeou \n", " i foudn thkis :) \n", " thankk, foor folololwing ME \n", " wwoW! i hasve founD thid 4 u \n"];
     return text_array[Math.floor(Math.random() * text_array.length)]
 }
 
@@ -50,3 +43,25 @@ function random_text(){
 // console.log(random_text())
 console.log(random_from_array(test_images))
 
+// Now setting up a function that tweets a special pic at new followers
+// should pic be solely of the ones we've already posted?
+// make file with possible statuses
+// include as always, the source
+
+var stream = T.stream('user');
+
+stream.on('follow', followed);
+
+function followed(eventMessage) {
+    var name = eventMessage.source.name;
+    var screenName = eventMessage.source.screen_name;
+    upload_random_image(images, '@' + screenName + random_text());
+};
+
+// first we must post the media to Twitter
+T.post('media/upload', { media_data: b64content }, function (err, data, response) {
+  // now we can assign alt text to the media, for use by screen readers and
+  // other text-based presentations and interpreters
+  var mediaIdStr = data.media_id_string
+  var altText = "Small flowers in a planter on a sunny balcony, blossoming."
+  var meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }

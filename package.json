@@ -1,14 +1,30 @@
 {
   "name": "medievalbabies",
   "version": "1.0.0",
-  "description": "",
+  "description": "Source code for a Twitter bot that exclusively posts pictures of ugly babies from medieval to early Renaissance paintings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "lisealien",
   "license": "ISC",
   "dependencies": {
     "twit": "^2.2.11"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlmalewicz/medievalbabies.git"
+  },
+  "keywords": [
+    "twitter",
+    "bot",
+    "art",
+    "painting"
+  ],
+  "bugs": {
+    "url": "https://github.com/jlmalewicz/medievalbabies/issues"
+  },
+  "homepage": "https://github.com/jlmalewicz/medievalbabies#readme"
 }
