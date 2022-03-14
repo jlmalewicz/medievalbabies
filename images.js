@@ -36,6 +36,10 @@ var images = {'primary' : [
     source: 'Lucas Cranach, The Virgin and Child with a Bunch of Grapes'
   },
   {
+    file: 'Cranach_2.jpg',
+    source: 'Lucas Cranach, Virgin and Child'
+  },
+  {
     file: 'Dystopos_1.jpg',
     source: 'Dystopos, Melancholia'
   },
@@ -62,6 +66,10 @@ var images = {'primary' : [
   {
     file: 'Unknown_1.jpg',
     source: 'Unknown, Cesarea'
+  },
+  {
+    file: 'Unknown_2.jpg',
+    source: 'Unknown, Cambrai Madonna'
   },
 	  {
     file: 'Benson_1.jpg',
@@ -92,10 +100,6 @@ var images = {'primary' : [
     source: 'The Madonna and Child with Saints Joseph, Elizabeth, and John the Baptist'
   },
   {
-    file: 'Boccaccino_1.jpg',
-    source: 'Boccaccio Boccaccino, Madonna and Child' 
-  },
-  {
     file: 'Tiepolo_1.jpg',
     source: 'Giovanni Battista Tiepolo, Madonna of the Goldfinch' 
   },
@@ -120,13 +124,29 @@ var images = {'primary' : [
     source: 'Neri Di Bicci, Virgin and Child Enthroned with Four Angels'
   },
   {
+    file: 'DiBicci_2.jpg',
+    source: 'Lorenzo Di Bicci, Madonna'
+  },
+  {
+    file: 'VanCleve_1.jpg',
+    source: 'Joos van Cleve, Ambrosius Benson, Madonna and Child'
+  },
+  {
     file: 'Masaccio_2.jpg',
     source: 'Masaccio, The Virgin and Child'
   },
   {
-    file: 'Unknown_2.png',
-    source: 'Unknown, Cambrai Madonna'
+    file: 'Unknown_3.jpg',
+    source: 'Unknown, Madonna and Child'
   },
+  {
+    file: 'Unknown_4.jpg',
+    source: 'Unknown, Portrait of the Deceased Boy with Vanitas Symbols'
+  },
+  {
+    file: 'Bugiardini_1.jpg',
+    source: 'Giuliano Bugiardini, Scenes from the Story of Tobias (detail)'
+  }, 
   {
     file: 'DaFerrara_1.jpg',
     source: 'Bono da Ferrara, Madonna and Child'
